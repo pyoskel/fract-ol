@@ -6,7 +6,7 @@
 #    By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/11 02:10:21 by pabartoc          #+#    #+#              #
-#    Updated: 2026/07/20 02:01:02 by pabartoc         ###   ########.fr        #
+#    Updated: 2026/07/20 06:45:51 by pabartoc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 
 # Source Files and Object Files
 SRCS        = $(SRC_DIR)/main.c \
+			  $(SRC_DIR)/ft_atof.c \
+			  $(SRC_DIR)/validation.c \
 
 OBJS        = $(SRCS:.c=.o)
 

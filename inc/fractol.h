@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 01:59:58 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/20 01:49:50 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/20 07:14:21 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,20 @@
 # include <stdlib.h> // for malloc and free
 # include <unistd.h> // for write
 # include <limits.h> // for INT_MAX and INT_MIN
-// # include <stdio.h> // IMPORTANT: For printf during testing!
+# include <stdio.h> // IMPORTANT: For printf during testing!
+
+typedef struct s_fractal
+{
+// Variables Specific to Julia
+	double	julia_x;      // real part		(av[2])
+	double	julia_y;      // imaginary part (av[3])
+}			t_fractal;
+
+/* --- Function Prototypes --- */
+// ft_atof.c
+double	ft_atof(const char *str);
+
+// validation.c
+int	is_double_valid(char *str);
 
 #endif
