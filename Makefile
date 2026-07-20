@@ -6,7 +6,7 @@
 #    By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/11 02:10:21 by pabartoc          #+#    #+#              #
-#    Updated: 2026/07/20 23:11:45 by pabartoc         ###   ########.fr        #
+#    Updated: 2026/07/20 23:43:07 by pabartoc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ all: $(NAME)
 
 # Builds the actual `fractol` program
 $(NAME): $(OBJS)
-	@make -C $(MLX_DIR)
+	@make -C $(MLX_DIR) > /dev/null 2>&1
 	@make -C libft
 	$(CC) $(CFLAGS) $(OBJS) -Llibft -lft $(MLX_FLAGS) -o $(NAME)
 	$(MLX_EXEC)
@@ -68,15 +68,15 @@ $(LIBFT):
 
 # Deletes the generated .o files (including those in libft)
 clean:
-	@make clean -C $(MLX_DIR)
-	@make clean -C libft
-	rm -f $(OBJS)
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(MLX_DIR) clean
+	@rm -f $(OBJS)
 
 # Deletes the .o files AND the finished programs/libraries
 fclean: clean
-	@make fclean -C libft
-	rm -f $(NAME)
-	rm -f libmlx.dylib
+	@make -C $(LIBFT_DIR) fclean
+	@rm -f $(NAME)
+	@rm -f libmlx.dylib
 
 # Rebuild everything
 re: fclean all
