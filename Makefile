@@ -6,7 +6,7 @@
 #    By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/11 02:10:21 by pabartoc          #+#    #+#              #
-#    Updated: 2026/07/20 18:48:59 by pabartoc         ###   ########.fr        #
+#    Updated: 2026/07/20 23:11:45 by pabartoc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,14 +20,18 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # --- OS-specific configuration ---
+# Settings for Ubuntu / Linux
 ifeq ($(OS), Linux)
-	# Einstellungen für Ubuntu / Linux
 	MLX_DIR     = minilibx-linux
 	MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+# In Linux, we don't need a copy command
+	MLX_EXEC    =
+# Settings for macOS (Apple Silicon M-series chips)
 else
-	# Einstellungen für macOS (Apple Silicon M-Chips)
 	MLX_DIR     = minilibx_macos_metal
 	MLX_FLAGS   = -L$(MLX_DIR) -lmlx -framework Metal -framework AppKit
+# On macOS, we copy the dylib to the root directory
+	MLX_EXEC    = cp $(MLX_DIR)/libmlx.dylib .
 endif
 
 # Folder Structure
@@ -41,7 +45,7 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 # Source Files and Object Files
 SRCS        = $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/ft_atof.c \
-			  $(SRC_DIR)/validation.c \
+			  $(SRC_DIR)/validation.c
 
 OBJS        = $(SRCS:.c=.o)
 
@@ -49,13 +53,14 @@ OBJS        = $(SRCS:.c=.o)
 all: $(NAME)
 
 # Builds the actual `fractol` program
-$(NAME): $(OBJ)
+$(NAME): $(OBJS)
 	@make -C $(MLX_DIR)
 	@make -C libft
-	$(CC) $(CFLAGS) $(OBJ) -Llibft -lft $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -Llibft -lft $(MLX_FLAGS) -o $(NAME)
+	$(MLX_EXEC)
 
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR)/inc -c $< -o $@
 
 # Build libft by navigating to the libft folder and running ‘make’ there
 $(LIBFT):
@@ -63,13 +68,15 @@ $(LIBFT):
 
 # Deletes the generated .o files (including those in libft)
 clean:
-	@make -C $(LIBFT_DIR) clean
+	@make clean -C $(MLX_DIR)
+	@make clean -C libft
 	rm -f $(OBJS)
 
 # Deletes the .o files AND the finished programs/libraries
 fclean: clean
-	@make -C $(LIBFT_DIR) fclean
+	@make fclean -C libft
 	rm -f $(NAME)
+	rm -f libmlx.dylib
 
 # Rebuild everything
 re: fclean all
