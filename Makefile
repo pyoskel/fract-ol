@@ -6,14 +6,29 @@
 #    By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/11 02:10:21 by pabartoc          #+#    #+#              #
-#    Updated: 2026/07/20 06:45:51 by pabartoc         ###   ########.fr        #
+#    Updated: 2026/07/20 18:48:59 by pabartoc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
+# Read the operating system (returns “Linux” or “Darwin” for macOS)
+OS := $(shell uname -s)
+
+# --- Compilers and Basic Flags ---
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I inc -I libft/inc
+CFLAGS = -Wall -Wextra -Werror
+
+# --- OS-specific configuration ---
+ifeq ($(OS), Linux)
+	# Einstellungen für Ubuntu / Linux
+	MLX_DIR     = minilibx-linux
+	MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+else
+	# Einstellungen für macOS (Apple Silicon M-Chips)
+	MLX_DIR     = minilibx_macos_metal
+	MLX_FLAGS   = -L$(MLX_DIR) -lmlx -framework Metal -framework AppKit
+endif
 
 # Folder Structure
 SRC_DIR     = src
@@ -34,8 +49,10 @@ OBJS        = $(SRCS:.c=.o)
 all: $(NAME)
 
 # Builds the actual `fractol` program
-$(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+$(NAME): $(OBJ)
+	@make -C $(MLX_DIR)
+	@make -C libft
+	$(CC) $(CFLAGS) $(OBJ) -Llibft -lft $(MLX_FLAGS) -o $(NAME)
 
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
