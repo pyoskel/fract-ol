@@ -6,16 +6,31 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 02:10:13 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/20 02:05:39 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/20 04:24:33 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int ac, char *av)
+#include "../inc/fractol.h"
+#include "libft.h"
+
+// ./fractol mandelbrot       | ac == 2
+// ./fractol julia -0.4 0.6.  | ac == 4
+
+// You must be able to create different Julia sets by passing
+// different parameters to the program
+
+int	main(int ac, char **av)
 {
-	if (mandelbrot set)
-	else if (julia set)
+	if (ac == 1)
+		printf("Test 1: ac = 1\n");
+	if (ac == 2 && ft_strncmp(av[1], "mandelbrot", 11))
+	{
+		printf("%d\n", ft_strncmp(av[1], "mandelbrot", 11));
+		printf("Test 2: ac = 2\n");	
+	}
+	// else if (ac == 4 && julia set)
+	// {
+		
+	// }
 	return (0);
 }
-
-// You must be able to create different Julia sets by passing different parameters to
-// the program
