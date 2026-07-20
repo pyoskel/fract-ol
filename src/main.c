@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 02:10:13 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/20 04:24:33 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/20 04:34:35 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 		printf("Test 1: ac = 1\n");
 	if (ac == 2 && ft_strncmp(av[1], "mandelbrot", 11))
 	{
-		printf("%d\n", ft_strncmp(av[1], "mandelbrot", 11));
+		printf("%d\n", ft_strncmp(av[1], "mandelbrot", 11) == 0);
 		printf("Test 2: ac = 2\n");	
 	}
 	// else if (ac == 4 && julia set)
