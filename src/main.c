@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 02:10:13 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/20 05:21:56 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/20 06:50:25 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,31 @@
 
 int	main(int ac, char **av)
 {
-	if (ac == 1)
-		printf("Test 1: ac = 1\n");
 	if (ac == 2 && ft_strncmp(av[1], "mandelbrot", 11) == 0)
 	{
-		printf("%d\n", ft_strncmp(av[1], "mandelbrot", 11));
-		printf("Test 2: ac = 2\n");	
+		printf("passed mandelbrot ✅\n");
+		printf("Test 1: ac = 2\n");
 	}
-	// else if (ac == 4 && julia set)
-	// {
-		
-	// }
+	else if (ac == 4 && ft_strncmp(av[1], "julia", 6) == 0)
+	{
+		if (!is_double_valid(av[2]) || !is_double_valid(av[3]))
+		{
+			printf("Error: Incorrect number!\n");
+			printf("Usage: ./fractol julia '-0.42' '0.42'\n");
+			return (EXIT_FAILURE);
+		}
+		double julia_real;
+		double julia_imaginary;
+
+		julia_real = ft_atof(av[2]);
+		julia_imaginary = ft_atof(av[3]);
+
+		printf("av[2] ✅ %f\n", julia_real);
+		printf("av[3] ✅ %f\n", julia_imaginary);
+		printf("passed julia ✅\n");
+		printf("Test 2: ac = 4\n");
+	}
+	else
+		return (EXIT_FAILURE, printf("Error\n"));
 	return (0);
 }
