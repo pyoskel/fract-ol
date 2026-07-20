@@ -1,0 +1,19 @@
+# Object files
+*.o
+
+# Executables and libraries
+fractol
+*.a
+*.dylib
+*.so
+
+# Swift and macOS specific build artifacts
+*.swiftmodule
+*.swiftsourceinfo
+*.abi.json
+*.swiftdoc
+*~
+.DS_Store
+
+# Optional: Ignore the entire macOS MLX folder if you only want to push the Linux one
+# minilibx_macos_metal/
