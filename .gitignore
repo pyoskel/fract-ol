@@ -16,4 +16,4 @@ fractol
 .DS_Store
 
 # Optional: Ignore the entire macOS MLX folder if you only want to push the Linux one
-# minilibx_macos_metal/
+minilibx_macos_metal/
