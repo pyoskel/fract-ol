@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:04:09 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/21 10:17:12 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/21 10:36:51 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ int	key_handler(int keysym, t_fractal *fractal)
 void	events_init(t_fractal *fractal)
 {
 	mlx_hook(fractal->window, 17, 0, close_handler, fractal);
-	mlx_hook(fractal->window, 2, (1L<<0), key_handler, fractal);
+	mlx_hook(fractal->window, 2, (1L << 0), key_handler, fractal);
 }

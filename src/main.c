@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 02:10:13 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/21 10:02:02 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/21 10:32:14 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	print_help(void)
 int	main(int ac, char **av)
 {
 	t_fractal	fractal;
-	
+
 	if (ac == 2 && ft_strncmp(av[1], "mandelbrot", 11) == 0)
 		fractal.name = av[1];
 	else if (ac == 4 && ft_strncmp(av[1], "julia", 6) == 0)

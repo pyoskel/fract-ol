@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 01:59:58 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/21 10:18:14 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/21 10:31:52 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,23 @@
 
 typedef struct s_fractal
 {
-	char 	*name;		  // "mandelbrot" or "julia"
-	
+	char	*name;			// "mandelbrot" or "julia"
 	// MLX Variables
-	void	*mlx;		  // Pointer to the MLX instance
-	void	*window;	  // Pointer to the window
-	void	*img;		  // Pointer to the Picture
-	char	*img_addr;	  // Memory address of the pixels
-	int		bpp;          // Bits per pixel
+	void	*mlx;			// Pointer to the MLX instance
+	void	*window;		// Pointer to the window
+	void	*img;			// Pointer to the Picture
+	char	*img_addr;		// Memory address of the pixels
+	int		bpp;			// Bits per pixel
 	int		line_length;
 	int		endian;
-
 	// Variables for Fractal Mapping
-	double	zoom;         // Zoom-Level
-	double	shift_x;      // Translation along the X-axis
-	double	shift_y;      // Translation along the Y-axis
-	int		max_iter;     // When the calculation stops
-	
+	double	zoom;			// Zoom-Level
+	double	shift_x;		// Translation along the X-axis
+	double	shift_y;		// Translation along the Y-axis
+	int		max_iter;		// When the calculation stops
 	// Variables Specific to Julia
-	double	julia_x;      // real part		(av[2])
-	double	julia_y;      // imaginary part (av[3])
+	double	julia_x;		// real part		(av[2])
+	double	julia_y;		// imaginary part (av[3])
 }			t_fractal;
 
 /* --- Function Prototypes --- */
