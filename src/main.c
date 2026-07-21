@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 02:10:13 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/21 05:23:21 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/21 05:32:03 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,8 @@ int	main(int ac, char **av)
 		printf("passed %s ✅\n", fractal.name);
 		printf("av[2] ✅ %f\n", fractal.julia_x);
 		printf("av[3] ✅ %f\n", fractal.julia_y);
+		fractal_init(&fractal);
 	}
-	// if (!is_double_valid(av[2]) || !is_double_valid(av[3]))
-	// {
-	// 	printf("Error: Incorrect number!\n");
-	// 	printf("Usage: ./fractol julia '-0.42' '0.42'\n");
-	// 	return (EXIT_FAILURE);
-	// }
 	else
 	{
 		printf("Error: Incorrect number!\n");

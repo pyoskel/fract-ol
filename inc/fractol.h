@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 01:59:58 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/21 05:26:01 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/21 08:12:01 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,15 @@
 typedef struct s_fractal
 {
 	char 	*name;		  // "mandelbrot" or "julia"
-// Variables Specific to Julia
+	// MLX Variables
+	void	*mlx;		  // Pointer to the MLX instance
+	void	*window;	  // Pointer to the window
+	void	*img;		  // Pointer to the Picture
+	char	*img_addr;	  // Memory address of the pixels
+	int		bpp;          // Bits per pixel
+	int		line_length;
+	int		endian;
+	// Variables Specific to Julia
 	double	julia_x;      // real part		(av[2])
 	double	julia_y;      // imaginary part (av[3])
 }			t_fractal;
@@ -30,6 +38,9 @@ typedef struct s_fractal
 /* --- Function Prototypes --- */
 // ft_atof.c
 double	ft_atof(const char *str);
+
+// init.c
+void	fractal_init(t_fractal *fractal);
 
 // validation.c
 int	is_double_valid(char *str);

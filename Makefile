@@ -6,7 +6,7 @@
 #    By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/11 02:10:21 by pabartoc          #+#    #+#              #
-#    Updated: 2026/07/21 04:30:14 by pabartoc         ###   ########.fr        #
+#    Updated: 2026/07/21 08:12:55 by pabartoc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 # Source Files and Object Files
 SRCS        = $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/ft_atof.c \
+			  $(SRC_DIR)/init.c \
 			  $(SRC_DIR)/validation.c
 
 OBJS        = $(SRCS:.c=.o)
