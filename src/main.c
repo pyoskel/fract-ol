@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 02:10:13 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/21 05:32:03 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/21 08:50:11 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int ac, char **av)
 		printf("av[2] ✅ %f\n", fractal.julia_x);
 		printf("av[3] ✅ %f\n", fractal.julia_y);
 		fractal_init(&fractal);
+		mlx_loop(fractal.mlx);
 	}
 	else
 	{
@@ -45,7 +46,7 @@ int	main(int ac, char **av)
 		printf("Usage: ./fractol julia '-0.42' '0.42'\n");
 		return (EXIT_FAILURE);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 // --- First Version ---

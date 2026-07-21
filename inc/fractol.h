@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 01:59:58 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/21 08:12:01 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/21 08:29:47 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 # define FRACTOL_H
 
 /* --- Standard Libraries --- */
+# include <mlx.h>	 // for minilibx
 # include <stdlib.h> // for malloc and free
 # include <unistd.h> // for write
 # include <limits.h> // for INT_MAX and INT_MIN
-# include <stdio.h> // IMPORTANT: For printf during testing!
+# include <stdio.h>  // IMPORTANT: For printf during testing!
 
 typedef struct s_fractal
 {
