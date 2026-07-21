@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 02:10:13 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/21 09:04:33 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/21 10:02:02 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int ac, char **av)
 	else
 		return (print_help());
 	fractal_init(&fractal);
+	events_init(&fractal);
 	mlx_loop(fractal.mlx);
 	return (EXIT_SUCCESS);
 }

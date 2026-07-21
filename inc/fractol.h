@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 01:59:58 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/21 09:52:16 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/21 10:18:14 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /* --- Standard Libraries --- */
 # include <mlx.h>	 // for minilibx
-# include <stdlib.h> // for malloc and free
+# include <stdlib.h> // for free and exit
 # include <unistd.h> // for write
 # include <limits.h> // for INT_MAX and INT_MIN
 # include <stdio.h>  // IMPORTANT: For printf during testing!
@@ -45,6 +45,12 @@ typedef struct s_fractal
 }			t_fractal;
 
 /* --- Function Prototypes --- */
+
+// events.c
+int		close_handler(t_fractal *fractal);
+int		key_handler(int keysym, t_fractal *fractal);
+void	events_init(t_fractal *fractal);
+
 // ft_atof.c
 double	ft_atof(const char *str);
 
@@ -52,6 +58,6 @@ double	ft_atof(const char *str);
 void	fractal_init(t_fractal *fractal);
 
 // validation.c
-int	is_double_valid(char *str);
+int		is_double_valid(char *str);
 
 #endif
