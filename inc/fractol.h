@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 01:59:58 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/20 07:14:21 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/21 05:26:01 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 typedef struct s_fractal
 {
+	char 	*name;		  // "mandelbrot" or "julia"
 // Variables Specific to Julia
 	double	julia_x;      // real part		(av[2])
 	double	julia_y;      // imaginary part (av[3])
