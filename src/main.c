@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 02:10:13 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/22 14:04:11 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/22 22:56:41 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static int	print_help(void)
 	ft_putstr_fd("Allowed parameters:\n", 1);
 	ft_putstr_fd("1. ./fractol mandelbrot\n", 1);
 	ft_putstr_fd("2. ./fractol julia <real> <imaginary>\n", 1);
-	ft_putstr_fd("Example: ./fractol julia -0.4 0.6\n\n", 1);
+	ft_putstr_fd("Example: ./fractol julia -0.4 0.6\n", 1);
+	ft_putstr_fd("3.(Bonus) ./fractol burningship\n\n", 1);
 	return (EXIT_FAILURE);
 }
 
@@ -34,7 +35,8 @@ int	main(int ac, char **av)
 {
 	t_fractal	fractal;
 
-	if (ac == 2 && ft_strncmp(av[1], "mandelbrot", 11) == 0)
+	if (ac == 2 && (ft_strncmp(av[1], "mandelbrot", 11) == 0
+			|| ft_strncmp(av[1], "burningship", 12) == 0))
 		fractal.name = av[1];
 	else if (ac == 4 && ft_strncmp(av[1], "julia", 6) == 0)
 	{
