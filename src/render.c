@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:41:05 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/23 00:53:48 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/23 01:09:01 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	render_pixel(int x, int y, t_fractal *fractal)
 		if (fractal->name[0] == 'b')
 		{
 			z_r = ft_abs_value_double(z_r);
-			z_i = ft_abs_value_double(z_i);
+			z_i = -ft_abs_value_double(z_i);
 		}
 		tmp_r = (z_r * z_r) - (z_i * z_i);
 		z_i = 2 * z_r * z_i + fractal->c_i;
