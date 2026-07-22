@@ -6,12 +6,11 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 02:10:13 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/21 10:32:14 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/22 14:04:11 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fractol.h"
-#include "libft.h"
 
 // ./fractol mandelbrot       | ac == 2
 // ./fractol julia -0.4 0.6.  | ac == 4
@@ -49,6 +48,7 @@ int	main(int ac, char **av)
 		return (print_help());
 	fractal_init(&fractal);
 	events_init(&fractal);
+	fractal_render(&fractal);
 	mlx_loop(fractal.mlx);
 	return (EXIT_SUCCESS);
 }
