@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 01:59:58 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/23 00:54:36 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/23 01:03:34 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_fractal
 /* --- Function Prototypes --- */
 
 // events.c
+void	destroy_display(t_fractal *fractal);
 int		close_handler(t_fractal *fractal);
 int		key_handler(int keysym, t_fractal *fractal);
 void	events_init(t_fractal *fractal);
