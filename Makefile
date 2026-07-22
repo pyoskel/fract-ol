@@ -6,7 +6,7 @@
 #    By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/11 02:10:21 by pabartoc          #+#    #+#              #
-#    Updated: 2026/07/21 10:43:40 by pabartoc         ###   ########.fr        #
+#    Updated: 2026/07/23 00:22:48 by pabartoc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,25 @@ CFLAGS = -Wall -Wextra -Werror
 SRC_DIR     = src
 INC_DIR     = inc
 LIBFT_DIR   = libft
-MLX_DIR     = minilibx-linux
+# MLX_DIR     = minilibx-linux
+
+# OS-spezifische Einstellungen
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Linux)
+    MLX_DIR     = minilibx-linux
+    MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+    INCLUDES    = -Iinc -I$(MLX_DIR) -Ilibft/inc
+else
+    # Für macOS
+    MLX_DIR     = minilibx_macos_metal
+    MLX_FLAGS   = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -lm
+    INCLUDES    = -Iinc -I$(MLX_DIR) -Ilibft/inc
+endif
 
 # The Libraries
 LIBFT       = $(LIBFT_DIR)/libft.a
-MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+# MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 # Source Files and Object Files
 SRCS        = $(SRC_DIR)/main.c \
@@ -34,6 +48,7 @@ SRCS        = $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/ft_atof.c \
 			  $(SRC_DIR)/init.c \
 			  $(SRC_DIR)/render.c \
+			  $(SRC_DIR)/utils.c \
 			  $(SRC_DIR)/validation.c
 
 OBJS        = $(SRCS:.c=.o)
