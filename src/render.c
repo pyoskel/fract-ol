@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:41:05 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/22 23:07:33 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/23 00:53:48 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static void	put_color(int x, int y, int i, t_fractal *fractal)
 		put_pixel(fractal, x, y, 0x4A2E04);
 	else
 		put_pixel(fractal, x, y,
-			(((i + fractal->color_shift) * 13 % 256) << 16) |
-			(((i + fractal->color_shift) * 4 % 256) << 8) |
-			((i + fractal->color_shift) * 18 % 256));
+			(((i + fractal->color_shift) * 13 % 256) << 16)
+			| (((i + fractal->color_shift) * 4 % 256) << 8)
+			| ((i + fractal->color_shift) * 18 % 256));
 }
 
 // Assign initial values for the Mandelbrot or Julia sets

@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:04:09 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/22 22:53:43 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/23 00:51:24 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int	close_handler(t_fractal *fractal)
 {
 	mlx_destroy_image(fractal->mlx, fractal->img);
 	mlx_destroy_window(fractal->mlx, fractal->window);
-	#ifdef __linux__
-		mlx_destroy_display(fractal->mlx);
-	#endif
+	destroy_display(fractal);
 	free(fractal->mlx);
 	exit(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
@@ -53,6 +51,10 @@ int	key_handler(int keysym, t_fractal *fractal)
 // --- Called every time the mouse scrolls ---
 // Scroll up (Zoom In == 4)          -> Reduces the scale
 // Scroll wheel down (Zoom Out == 5) -> Increases the scale
+// Zoom follows the actual mouse position
+// 1. Calculate the exact mathematical coordinates of the pixel under the mouse
+// 2. Adjust the shift so that the point under the mouse remains fixed
+// 3. Apply the zoom and redraw
 int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 {
 	double	mouse_r;
@@ -65,15 +67,12 @@ int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 		zoom_factor = 1.05;
 	else
 		return (EXIT_SUCCESS);
-	// 1. Die genaue mathematische Koordinate des Pixels unter der Maus berechnen
 	mouse_r = ((double)x / 800.0) * 5.0 - 3.0;
-	mouse_i = ((double)y / 800.0) * -5.0 + 3.0; // Y ist invertiert!
-
-	// 2. Den Shift anpassen, damit der Punkt unter der Maus fixiert bleibt
-	fractal->shift_x += mouse_r * fractal->zoom - mouse_r * (fractal->zoom * zoom_factor);
-	fractal->shift_y += mouse_i * fractal->zoom - mouse_i * (fractal->zoom * zoom_factor);
-
-	// 3. Den Zoom anwenden und neu zeichnen
+	mouse_i = ((double)y / 800.0) * -5.0 + 3.0;
+	fractal->shift_x += mouse_r * fractal->zoom;
+	fractal->shift_x -= mouse_r * (fractal->zoom * zoom_factor);
+	fractal->shift_y += mouse_i * fractal->zoom;
+	fractal->shift_y -= mouse_i * (fractal->zoom * zoom_factor);
 	fractal->zoom *= zoom_factor;
 	fractal_render(fractal);
 	return (EXIT_SUCCESS);

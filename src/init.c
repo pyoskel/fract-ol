@@ -6,11 +6,27 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 04:38:52 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/22 23:05:32 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/23 00:39:00 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fractol.h"
+
+#ifdef __linux__
+
+void	destroy_display(t_fractal *fractal)
+{
+	mlx_destroy_display(fractal->mlx);
+}
+
+#elif defined (__APPLE__)
+
+void	destroy_display(t_fractal *fractal)
+{
+	(void)fractal;
+}
+
+#endif
 
 static void	init_data(t_fractal *fractal)
 {
@@ -31,9 +47,7 @@ void	fractal_init(t_fractal *fractal)
 	fractal->window = mlx_new_window(fractal->mlx, 800, 800, fractal->name);
 	if (fractal->window == NULL)
 	{
-#ifdef __linux__
-		mlx_destroy_display(fractal->mlx);
-#endif
+		destroy_display(fractal);
 		free(fractal->mlx);
 		exit(EXIT_FAILURE);
 	}
@@ -41,9 +55,7 @@ void	fractal_init(t_fractal *fractal)
 	if (fractal->img == NULL)
 	{
 		mlx_destroy_window(fractal->mlx, fractal->window);
-#ifdef __linux__
-		mlx_destroy_display(fractal->mlx);
-#endif
+		destroy_display(fractal);
 		free(fractal->mlx);
 		exit(EXIT_FAILURE);
 	}

@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 01:59:58 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/22 22:49:27 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/23 00:54:36 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void	fractal_render(t_fractal *fractal);
 
 // utils.c
 void	put_pixel(t_fractal *fractal, int x, int y, int color);
-double	map(double unscaled_num, double new_min, double new_max, double old_max);
+double	map(double unscaled_num, double new_min,
+			double new_max, double old_max);
 
 // validation.c
 int		is_double_valid(char *str);
