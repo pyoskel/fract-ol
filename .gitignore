@@ -4,7 +4,8 @@
 # Executables and libraries
 fractol
 *.a
-*.dylib
+.dylib
+*libmlx.dylib
 *.so
 
 # Swift and macOS specific build artifacts
