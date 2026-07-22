@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 04:38:52 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/21 09:50:10 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/22 23:05:32 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	init_data(t_fractal *fractal)
 	fractal->zoom = 1.0;
 	fractal->shift_x = 0.0;
 	fractal->shift_y = 0.0;
+	fractal->color_shift = 0;
 }
 
 // Establishes the connection to the MLX, the window, and the image
@@ -30,7 +31,9 @@ void	fractal_init(t_fractal *fractal)
 	fractal->window = mlx_new_window(fractal->mlx, 800, 800, fractal->name);
 	if (fractal->window == NULL)
 	{
+#ifdef __linux__
 		mlx_destroy_display(fractal->mlx);
+#endif
 		free(fractal->mlx);
 		exit(EXIT_FAILURE);
 	}
@@ -38,7 +41,9 @@ void	fractal_init(t_fractal *fractal)
 	if (fractal->img == NULL)
 	{
 		mlx_destroy_window(fractal->mlx, fractal->window);
+#ifdef __linux__
 		mlx_destroy_display(fractal->mlx);
+#endif
 		free(fractal->mlx);
 		exit(EXIT_FAILURE);
 	}
