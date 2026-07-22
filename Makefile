@@ -6,7 +6,7 @@
 #    By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/11 02:10:21 by pabartoc          #+#    #+#              #
-#    Updated: 2026/07/21 10:18:50 by pabartoc         ###   ########.fr        #
+#    Updated: 2026/07/21 10:43:40 by pabartoc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS        = $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/events.c \
 			  $(SRC_DIR)/ft_atof.c \
 			  $(SRC_DIR)/init.c \
+			  $(SRC_DIR)/render.c \
 			  $(SRC_DIR)/validation.c
 
 OBJS        = $(SRCS:.c=.o)

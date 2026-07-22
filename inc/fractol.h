@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/11 01:59:58 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/21 10:31:52 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/22 12:57:08 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FRACTOL_H
 
 /* --- Standard Libraries --- */
+# include "libft.h"
 # include <mlx.h>	 // for minilibx
 # include <stdlib.h> // for free and exit
 # include <unistd.h> // for write
@@ -53,6 +54,9 @@ double	ft_atof(const char *str);
 
 // init.c
 void	fractal_init(t_fractal *fractal);
+
+// render.c
+void	fractal_render(t_fractal *fractal);
 
 // validation.c
 int		is_double_valid(char *str);
