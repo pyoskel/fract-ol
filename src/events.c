@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:04:09 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/22 14:04:24 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/22 22:53:43 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ int	close_handler(t_fractal *fractal)
 {
 	mlx_destroy_image(fractal->mlx, fractal->img);
 	mlx_destroy_window(fractal->mlx, fractal->window);
-	mlx_destroy_display(fractal->mlx);
+	#ifdef __linux__
+		mlx_destroy_display(fractal->mlx);
+	#endif
 	free(fractal->mlx);
 	exit(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
@@ -29,18 +31,21 @@ int	close_handler(t_fractal *fractal)
 // Right Arrow = 65363  ||   a = 97
 // Up Arrow    = 65362  ||   s = 115
 // Down Arrow  = 65364  ||   d = 100
+// Space = 32
 int	key_handler(int keysym, t_fractal *fractal)
 {
-	if (keysym == 65307)
+	if (keysym == KEY_ESC)
 		close_handler(fractal);
-	else if (keysym == 65361 || keysym == 97)
+	else if (keysym == KEY_LEFT || keysym == KEY_A)
 		fractal->shift_x -= (0.5 * fractal->zoom);
-	else if (keysym == 65363 || keysym == 100)
+	else if (keysym == KEY_RIGHT || keysym == KEY_D)
 		fractal->shift_x += (0.5 * fractal->zoom);
-	else if (keysym == 65362 || keysym == 119)
+	else if (keysym == KEY_UP || keysym == KEY_W)
 		fractal->shift_y += (0.5 * fractal->zoom);
-	else if (keysym == 65364 || keysym == 115)
+	else if (keysym == KEY_DOWN || keysym == KEY_S)
 		fractal->shift_y -= (0.5 * fractal->zoom);
+	else if (keysym == KEY_SPACE)
+		fractal->color_shift += 5;
 	fractal_render(fractal);
 	return (EXIT_SUCCESS);
 }
