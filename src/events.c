@@ -6,7 +6,7 @@
 /*   By: pabartoc <pabartoc@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:04:09 by pabartoc          #+#    #+#             */
-/*   Updated: 2026/07/21 10:36:51 by pabartoc         ###   ########.fr       */
+/*   Updated: 2026/07/22 14:04:24 by pabartoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,62 @@ int	close_handler(t_fractal *fractal)
 
 // --- Called every time a key is pressed ---
 // 65307 is the X11 keycode for the ESC key in Linux
+// Left Arrow  = 65361  ||   w = 119
+// Right Arrow = 65363  ||   a = 97
+// Up Arrow    = 65362  ||   s = 115
+// Down Arrow  = 65364  ||   d = 100
 int	key_handler(int keysym, t_fractal *fractal)
 {
 	if (keysym == 65307)
 		close_handler(fractal);
+	else if (keysym == 65361 || keysym == 97)
+		fractal->shift_x -= (0.5 * fractal->zoom);
+	else if (keysym == 65363 || keysym == 100)
+		fractal->shift_x += (0.5 * fractal->zoom);
+	else if (keysym == 65362 || keysym == 119)
+		fractal->shift_y += (0.5 * fractal->zoom);
+	else if (keysym == 65364 || keysym == 115)
+		fractal->shift_y -= (0.5 * fractal->zoom);
+	fractal_render(fractal);
+	return (EXIT_SUCCESS);
+}
+
+// --- Called every time the mouse scrolls ---
+// Scroll up (Zoom In == 4)          -> Reduces the scale
+// Scroll wheel down (Zoom Out == 5) -> Increases the scale
+int	mouse_handler(int button, int x, int y, t_fractal *fractal)
+{
+	double	mouse_r;
+	double	mouse_i;
+	double	zoom_factor;
+
+	if (button == 4)
+		zoom_factor = 0.95;
+	else if (button == 5)
+		zoom_factor = 1.05;
+	else
+		return (EXIT_SUCCESS);
+	// 1. Die genaue mathematische Koordinate des Pixels unter der Maus berechnen
+	mouse_r = ((double)x / 800.0) * 5.0 - 3.0;
+	mouse_i = ((double)y / 800.0) * -5.0 + 3.0; // Y ist invertiert!
+
+	// 2. Den Shift anpassen, damit der Punkt unter der Maus fixiert bleibt
+	fractal->shift_x += mouse_r * fractal->zoom - mouse_r * (fractal->zoom * zoom_factor);
+	fractal->shift_y += mouse_i * fractal->zoom - mouse_i * (fractal->zoom * zoom_factor);
+
+	// 3. Den Zoom anwenden und neu zeichnen
+	fractal->zoom *= zoom_factor;
+	fractal_render(fractal);
 	return (EXIT_SUCCESS);
 }
 
 // --- Log all events ---
 // Event 17 (DestroyNotify): Responds to clicking the ‘X’ on the window
-
 // Event 2 (KeyPress): Responds to every keystroke
-// (1L<<0) is the KeyPressMask, which tells the system what to listen for
+//    (1L << 0) is the KeyPressMask, which tells the system what to listen for
 void	events_init(t_fractal *fractal)
 {
 	mlx_hook(fractal->window, 17, 0, close_handler, fractal);
 	mlx_hook(fractal->window, 2, (1L << 0), key_handler, fractal);
+	mlx_mouse_hook(fractal->window, mouse_handler, fractal);
 }
