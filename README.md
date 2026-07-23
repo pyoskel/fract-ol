@@ -118,6 +118,7 @@ The color is dynamically calculated using bit-shifting based on the escape itera
 - **Mandelbrot Set:** [Wikipedia](https://en.wikipedia.org/wiki/Mandelbrot_set)
 - **Julia Set:** [Wikipedia](https://en.wikipedia.org/wiki/Julia_set)
 - **Burning Ship Fractal:** [Wikipedia](https://en.wikipedia.org/wiki/Burning_Ship_fractal)
+- **Hex Color Finder:** [HTML Color Codes](https://htmlcolorcodes.com/) - *Great tool to find perfect hex values (0xRRGGBB) for custom fractal palettes.*
 
 ### AI Usage
 *As required by the project guidelines, AI tools (LLMs) were utilized during the development of this project to:*
